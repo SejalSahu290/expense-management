@@ -40,10 +40,6 @@
 
 import expenseService from '@/services/expenseService';
 
- 
-// function createData(id, title, description, amount, status) {
-//   return { id, title, description, amount, status };
-// }
 
 export default {
   name: 'HomeView',
@@ -62,10 +58,11 @@ export default {
       // Logic to edit the row (can be a form, a modal, etc.)
       alert(`Editing row with ID: ${row.id}`);
     },
-    deleteRow(id) {
+   async deleteRow(id) {
       // Logic to delete the row (filter it out of rows array)
-      this.rows = this.rows.filter(row => row.id !== id);
-      alert(`Deleted row with ID: ${id}`);
+       this.rows = this.rows.filter(row => row.id !== id);
+       await expenseService.DeleteExpense(id);
+      // alert(`Deleted row with ID: ${id}`);
     }
   }
 };

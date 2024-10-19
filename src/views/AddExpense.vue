@@ -69,19 +69,15 @@ import expenseService from '@/services/expenseService';
       async submitForm() {
 
           await expenseService.PostExpense(this.form);
-        // Logic to handle form submission
 
         this.$router.push('/');
         console.log('Form Data:', this.form);
-        // console.log('Post Expense:', this.form )
-        // alert('Expense Submitted');
        
         // Reset form after submission
         this.form.id = '';
         this.form.title = '';
         this.form.description = '';
         this.form.amount = '';
-        // this.form.status = 'active';
       }
     }
   };
@@ -104,14 +100,14 @@ import expenseService from '@/services/expenseService';
   .expense-form {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Align items to the start */
+    align-items: flex-start; 
     max-width: 400px;
     margin: 0 auto;
-    padding: 20px; /* Added padding */
-    border: 1px solid #ccc; /* Optional border */
-    border-radius: 5px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
-    background-color: #f9f9f9; /* Light background color */
+    padding: 20px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9; 
   }
   
   .form {
@@ -123,7 +119,7 @@ import expenseService from '@/services/expenseService';
     display: block;
     margin-bottom: 8px;
     font-weight: bold;   
-    text-align: center ; /* Align label text to the left */
+    text-align: center ; 
   }
   
   input,
@@ -134,18 +130,18 @@ import expenseService from '@/services/expenseService';
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    transition: border-color 0.3s; /* Smooth transition for focus effect */
+    transition: border-color 0.3s;
   }
   
   input:focus,
   textarea:focus,
   select:focus {
-    border-color: #42b983; /* Change border color on focus */
-    outline: none; /* Remove default outline */
+    border-color: #42b983; 
+    outline: none; 
   }
   
   textarea {
-    resize: vertical; /* Allow vertical resize only */
+    resize: vertical; 
   }
   
   .submit-btn {

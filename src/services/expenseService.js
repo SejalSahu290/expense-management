@@ -13,6 +13,10 @@ const PostExpense = async(data) => {
     return PostExpense.data;
 }
 
+const DeleteExpense = async(id) => {
+    const response = await apiClient.delete("/expenses/"+id);
+}
+
 export default{
-    fetchExpense, PostExpense
+    fetchExpense, PostExpense , DeleteExpense
 }

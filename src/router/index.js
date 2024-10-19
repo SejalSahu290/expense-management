@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import AddExpense from '@/views/AddExpense.vue'
+import LoginView from '@/views/LoginView.vue'
 
 const routes = [
   {
@@ -19,7 +20,12 @@ const routes = [
   {
     path: '/add-expense',
     name: 'add-expense',
-    component: AddExpense // Make sure the form component is registered
+    component: AddExpense 
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView 
   }
 ]
 

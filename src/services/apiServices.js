@@ -10,11 +10,11 @@ const apiClient =  axios.create({
 
 apiClient.interceptors.request.use(
     function (config){
-        // const token = localStorage.getItem('containerProjectAuthToken');
-        // console.log('token inside api service', token);
-        // if(token){
-        //     config.headers.Authorization = `Bearer ${token}`;
-        // }
+        const token = localStorage.getItem('expensemanagementToken');
+        console.log('token inside api service', token);
+        if(token){
+            config.headers.Authorization = `Bearer ${token}`;
+        }
 
         return config;
     },
