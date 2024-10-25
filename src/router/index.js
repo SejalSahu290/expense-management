@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import AddExpense from '@/views/AddExpense.vue'
 import LoginView from '@/views/LoginView.vue'
+import EditExpense from '@/views/EditExpense.vue'
 
 const routes = [
   {
@@ -26,7 +27,12 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginView 
-  }
+  },
+  {
+    path: '/edit-expense/:id',
+    name: 'edit-expense',
+    component: EditExpense 
+  },
 ]
 
 const router = createRouter({

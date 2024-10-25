@@ -7,27 +7,24 @@
     <table class="styled-table">
       <thead>
         <tr>
-          <th>ID</th>
+          <th>S.NO</th>
           <th>Title</th>
           <th>Description</th>
           <th>Amount</th>
-          <!-- <th>Status</th> -->
+          <th>Category</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="row in rows" :key="row.id">
-          <td>{{ row.id }}</td>
+        <tr v-for="(row, index ) in rows" :key="row.id">
+          <td>{{index + 1 }}</td>
           <td>{{ row.title }}</td>
           <td>{{ row.description }}</td>
-          <td>{{ row.amount }}</td>
-          <!-- <td>
-            <span :class="{'status-active': row.status, 'status-inactive': !row.status}">
-              {{ row.status ? 'Active' : 'Inactive' }}
-            </span>
-          </td> -->
+          <td>₹ {{ row.amount }}</td>
+          <td>{{ row.category?.name }}</td>
+         
           <td>
-            <button class="edit-btn" @click="editRow(row)">Edit</button>
+            <button class="edit-btn" @click="editRow(row.id)">Edit</button>
             <button class="delete-btn" @click="deleteRow(row.id)">Delete</button>
           </td>
         </tr>
@@ -54,15 +51,12 @@ export default {
         this.rows = response;
    },
   methods: {
-    editRow(row) {
-      // Logic to edit the row (can be a form, a modal, etc.)
-      alert(`Editing row with ID: ${row.id}`);
+    editRow(id) {
+      this.$router.push('/edit-expense/'+id);
     },
    async deleteRow(id) {
-      // Logic to delete the row (filter it out of rows array)
        this.rows = this.rows.filter(row => row.id !== id);
        await expenseService.DeleteExpense(id);
-      // alert(`Deleted row with ID: ${id}`);
     }
   }
 };
@@ -109,7 +103,7 @@ export default {
   cursor: pointer;
 }
 
-.status-active {
+/* .status-active {
   color: green;
   font-weight: bold;
 }
@@ -117,7 +111,7 @@ export default {
 .status-inactive {
   color: red;
   font-weight: bold;
-}
+} */
 
 /* Action button styles */
 .edit-btn, .delete-btn {

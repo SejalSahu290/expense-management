@@ -1,14 +1,14 @@
+
 <!-- eslint-disable no-undef -->
 <!-- eslint-disable no-undef -->
 <!-- eslint-disable no-undef -->
 <template>
     <div id="app">
-      <h1>Add Expense</h1>
+      <h1>Edit Expense</h1>
   <div class="expense-form">
               <!-- Expense Form -->
       <form @submit.prevent="submitForm" style="width: 95%;">
-      
-  
+       
         <!-- Title Field -->
         <div class="form-group">
           <label for="title">Title</label>
@@ -31,8 +31,8 @@
         <select name="category"  v-model="form.categoryId"  required>
           <option >Select Category</option>
           <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
-  </select>
-  
+    </select>
+         
         <!-- Submit Button -->
         <button type="submit" class="submit-btn">Submit</button>
       </form>
@@ -43,47 +43,51 @@
   
   <script>
 
-
 import expenseService from '@/services/expenseService';
 
-  export default {
-    data() {
-      return {
-        form: {
-          id: '',
-          title: '',
-          description: '',
-          amount: '',
-          categoryId: '',
-        } ,
-        categories:[]
-      };
-    },
-    methods: {
-      async submitForm() {
 
-          await expenseService.PostExpense(this.form);
-        this.$router.push('/');
-        //console.log('Form Data:', this.form);
-       
-        // Reset form after submission
-        this.form.id = '';
-        this.form.title = '';
-        this.form.description = '';
-        this.form.amount = '';
-      }
-    },
+export default {
+  data() {
+    return {
+        id: null ,
+      form: {
+        id: null,
+        title: '',
+        description: '',
+        amount: '',
+        categoryId:'', 
+      },
+      categories:[]
+    };
+  },
+  async created() {
+    this.id = this.$route.params.id;
+   const data =  await expenseService.GetExpense( this.id);
+   
+   this.categories = await expenseService.GetAllCategory();
 
-    async mounted(){
-         const data = await expenseService.GetAllCategory();
+    this.category = data;
 
-         this.categories = data;
-         console.log(data)
-        //  console.log( this.categories);
+       this.form.id = data.id;
+        this.form.title = data.title;
+        this.form.description = data.description;
+        this.form.amount = data.amount;
+        this.form.categoryId = data.category?.id; 
+     
+  },
+  methods: {
+    async submitForm() {
+       await expenseService.EditExpense(this.form);
 
-        
+      this.$router.push('/');
+
+
+      console.log('Form Data:', this.form);
     }
-  };
+  }
+
+};
+
   </script>
   
   <style scoped>

@@ -5,22 +5,25 @@
  <!-- Add Expense Button as a Route Link -->
 
 
-  <!-- <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav> -->
-
-  <router-view/>
+ <Navbar/>
+ <router-view/>
  
 </template>
 
 
 <script>
+
+import Navbar from './components/Navbar.vue';
+
+
+export default {
+  name:'App',
+  components:{
+    Navbar
+  }
+}
   
 </script>
-
-
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -45,6 +48,10 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.navbar{
+  color:green;
 }
 
 /* Add Expense Button Styling */
@@ -86,6 +93,8 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
+
 </style>
 
 
